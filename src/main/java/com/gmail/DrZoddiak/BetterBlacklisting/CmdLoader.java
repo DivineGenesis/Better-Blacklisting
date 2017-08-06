@@ -58,9 +58,9 @@ public class CmdLoader
 		else
 		{
 			if(Reference.addList(itemID))
-				src.sendMessage(Text.of("Success"));
+				src.sendMessage(Text.of(TextColors.GREEN, "Successfully added ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
 			else
-				src.sendMessage(Text.of("Fail"));
+				src.sendMessage(Text.of(itemID, TextColors.RED, " already exists in the banlist!"));
 		}
 		
 		return CommandResult.success();
@@ -70,11 +70,11 @@ public class CmdLoader
 	{
 		if(src instanceof Player)
 		{
-			String item = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
-			if(Reference.addList(item))
-				src.sendMessage(Text.of("Success"));
+			String itemID = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
+			if(Reference.addList(itemID))
+				src.sendMessage(Text.of(TextColors.GREEN, "Successfully added ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
 			else
-				src.sendMessage(Text.of("Fail"));
+				src.sendMessage(Text.of(itemID, TextColors.RED, " already exists in the banlist!"));
 		}
 		return CommandResult.success();
     }
@@ -88,9 +88,9 @@ public class CmdLoader
 		else
 		{
 			if(Reference.removeList(itemID))
-				src.sendMessage(Text.of("Success"));
+				src.sendMessage(Text.of(TextColors.GREEN, "Successfully removed ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
 			else
-				src.sendMessage(Text.of("Fail"));
+				src.sendMessage(Text.of(itemID, TextColors.RED, " doesn't exist in the banlist!"));
 		}
 		
 		return CommandResult.success();
@@ -100,11 +100,11 @@ public class CmdLoader
 	{
 		if(src instanceof Player)
 		{
-			String item = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
-			if(Reference.removeList(item))
-				src.sendMessage(Text.of("Success"));
+			String itemID = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
+			if(Reference.removeList(itemID))
+				src.sendMessage(Text.of(TextColors.GREEN, "Successfully removed ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
 			else
-				src.sendMessage(Text.of("Fail"));
+				src.sendMessage(Text.of(itemID, TextColors.RED, " doesn't exist in the banlist!"));
 		}
 		return CommandResult.success();
     }

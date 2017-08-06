@@ -7,6 +7,7 @@ import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.config.DefaultConfig;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.game.GameReloadEvent;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
@@ -41,6 +42,12 @@ public class Main
 		Sponge.getCommandManager().register(this, new CmdLoader().bbl, "BetterBlacklisting","bbl");
 		config.getLogger().info(String.format("Initialized! - Your glorified stop sign has been delivered!"));
 		Sponge.getEventManager().registerListeners(this, new EventListener());
+	}
+	
+	@Listener
+	public void onReload(GameReloadEvent event)
+	{
+		config.configCheck();
 	}
 
 	@Listener
