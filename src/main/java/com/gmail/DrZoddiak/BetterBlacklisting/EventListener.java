@@ -15,56 +15,75 @@ public class EventListener
 	@Listener
 	public void pickup(ChangeInventoryEvent.Pickup event, @First Player player)
 	{
-		String itemID = Reference.getID(event.getTargetEntity().getItemType().getTemplate().createStack());
-		if(Reference.banlist.contains(itemID))
+		if(!player.hasPermission(Reference.BYPASS))
 		{
-			event.setCancelled(true);
-			player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
-			event.getTargetEntity().remove();
+			String itemID = Reference.getID(event.getTargetEntity().getItemType().getTemplate().createStack());
+			if(Reference.banlist.contains(itemID))
+			{
+				event.setCancelled(true);
+				player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
+				event.getTargetEntity().remove();
+			}
 		}
 	}
 	
 	@Listener
 	public void onUsePriMain(InteractItemEvent.Primary.MainHand event, @First Player player)
 	{
-		String itemID = Reference.getID(player.getItemInHand(HandTypes.MAIN_HAND).get());
-		if(Reference.banlist.contains(itemID))
-		{
-			player.setItemInHand(HandTypes.MAIN_HAND, null);
-			player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
-		}
+		if(!player.hasPermission(Reference.BYPASS))
+			if(player.getItemInHand(HandTypes.MAIN_HAND).isPresent())
+			{
+				String itemID = Reference.getID(player.getItemInHand(HandTypes.MAIN_HAND).get());
+				if(Reference.banlist.contains(itemID))
+				{
+					player.setItemInHand(HandTypes.MAIN_HAND, null);
+					player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
+				}
+			}
 	}
 	
 	@Listener
 	public void onUseSecMain(InteractItemEvent.Secondary.MainHand event, @First Player player)
 	{
-		String itemID = Reference.getID(player.getItemInHand(HandTypes.MAIN_HAND).get());
-		if(Reference.banlist.contains(itemID))
-		{
-			player.setItemInHand(HandTypes.MAIN_HAND, null);
-			player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
-		}
+		if(!player.hasPermission(Reference.BYPASS))
+			if(player.getItemInHand(HandTypes.MAIN_HAND).isPresent())
+			{
+				String itemID = Reference.getID(player.getItemInHand(HandTypes.MAIN_HAND).get());
+				if(Reference.banlist.contains(itemID))
+				{
+					player.setItemInHand(HandTypes.MAIN_HAND, null);
+					player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
+				}
+			}
 	}
 
 	@Listener
 	public void onUseSecOff(InteractItemEvent.Primary.OffHand event, @First Player player)
 	{
-		String itemID = Reference.getID(player.getItemInHand(HandTypes.OFF_HAND).get());
-		if(Reference.banlist.contains(itemID))
-		{
-			player.setItemInHand(HandTypes.OFF_HAND, null);
-			player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
-		}
+		if(!player.hasPermission(Reference.BYPASS))
+			if(player.getItemInHand(HandTypes.OFF_HAND).isPresent())
+			{
+				String itemID = Reference.getID(player.getItemInHand(HandTypes.OFF_HAND).get());
+				if(Reference.banlist.contains(itemID))
+				{
+					player.setItemInHand(HandTypes.OFF_HAND, null);
+					player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
+				}
+			}
 	}
 	
 	@Listener
 	public void onUseSecOff(InteractItemEvent.Secondary.OffHand event, @First Player player)
 	{
-		String itemID = Reference.getID(player.getItemInHand(HandTypes.OFF_HAND).get());
-		if(Reference.banlist.contains(itemID))
-		{
-			player.setItemInHand(HandTypes.OFF_HAND, null);
-			player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
-		}
+		if(!player.hasPermission(Reference.BYPASS))
+			if(player.getItemInHand(HandTypes.OFF_HAND).isPresent())
+			{
+				String itemID = Reference.getID(player.getItemInHand(HandTypes.OFF_HAND).get());
+				if(Reference.banlist.contains(itemID))
+				{
+					player.setItemInHand(HandTypes.OFF_HAND, null);
+					player.sendMessage(Text.of(itemID, TextColors.RED, " is banned!"));
+				}
+			}
 	}  
 } 
