@@ -40,8 +40,8 @@ public class Main
 	public void onInit(GameInitializationEvent event)
 	{
 		Sponge.getCommandManager().register(this, new CmdLoader().bbl, "BetterBlacklisting","bbl");
-		config.getLogger().info(String.format("Initialized! - Your glorified stop sign has been delivered!"));
 		Sponge.getEventManager().registerListeners(this, new EventListener());
+		config.getLogger().info(String.format("Initialized! - Your glorified stop sign has been delivered!"));
 	}
 	
 	@Listener
