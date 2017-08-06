@@ -70,11 +70,18 @@ public class CmdLoader
 	{
 		if(src instanceof Player)
 		{
-			String itemID = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
-			if(Reference.addList(itemID))
-				src.sendMessage(Text.of(TextColors.GREEN, "Successfully added ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
+			if(((Player) src).getItemInHand(HandTypes.MAIN_HAND).isPresent())
+			{
+				String itemID = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
+				if(Reference.addList(itemID))
+					src.sendMessage(Text.of(TextColors.GREEN, "Successfully added ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
+				else
+					src.sendMessage(Text.of(itemID, TextColors.RED, " already exists in the banlist!"));
+			}
 			else
-				src.sendMessage(Text.of(itemID, TextColors.RED, " already exists in the banlist!"));
+			{
+				src.sendMessage(Text.of(TextColors.RED,"Nothing found in hand!"));
+			}
 		}
 		return CommandResult.success();
     }
@@ -100,11 +107,18 @@ public class CmdLoader
 	{
 		if(src instanceof Player)
 		{
-			String itemID = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
-			if(Reference.removeList(itemID))
-				src.sendMessage(Text.of(TextColors.GREEN, "Successfully removed ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
+			if(((Player) src).getItemInHand(HandTypes.MAIN_HAND).isPresent())
+			{
+				String itemID = Reference.getID(((Player) src).getItemInHand(HandTypes.MAIN_HAND).get());
+				if(Reference.removeList(itemID))
+					src.sendMessage(Text.of(TextColors.GREEN, "Successfully removed ", TextColors.WHITE, itemID, TextColors.GREEN, " to the banlist!"));
+				else
+					src.sendMessage(Text.of(itemID, TextColors.RED, " doesn't exist in the banlist!"));
+			}
 			else
-				src.sendMessage(Text.of(itemID, TextColors.RED, " doesn't exist in the banlist!"));
+			{
+				src.sendMessage(Text.of(TextColors.RED,"Nothing found in hand!"));
+			}
 		}
 		return CommandResult.success();
     }
@@ -145,10 +159,11 @@ public class CmdLoader
 	public CommandResult help(CommandSource src, CommandContext args) throws CommandException
 	{
 		List<Text> helpText = Lists.newArrayList(); 
-		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl add").onClick(TextActions.suggestCommand("/bbl add modID:itemID")),TextColors.GRAY," modID:itemID",TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Is used to add items to banned item list"));
-		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl remove").onClick(TextActions.suggestCommand("/bbl remove modID:itemID")),TextColors.GRAY," modID:itemID",TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Is used to add items to banned item list"));
-		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl reload").onClick(TextActions.runCommand("/bbl reload")),TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Reloads files"));
-		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl list").onClick(TextActions.runCommand("/bbl list")),TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Shows items that are currently on the banned item list"));
+		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl add").onClick(TextActions.suggestCommand("/bbl add modID:itemID")),TextColors.GRAY," modID:itemID",TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Is used to add items to banned-item list"));
+		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl addhand").onClick(TextActions.suggestCommand("/bbl addhand")),TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Is used to add the item in hand to banned item list"));
+		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl remove").onClick(TextActions.suggestCommand("/bbl remove modID:itemID")),TextColors.GRAY," modID:itemID",TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Is used to remove items from banned-item list"));
+		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl removehand").onClick(TextActions.suggestCommand("/bbl removehand")),TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Is used to remove the item in hand from banned-item list"));
+		helpText.add(Text.of(TextColors.GREEN, Text.builder("/bbl list").onClick(TextActions.runCommand("/bbl list")),TextColors.DARK_GRAY," - ",TextColors.DARK_AQUA,"Shows items that are currently on the banned-item list"));
 
 		PaginationList.builder()
 				.title(Text.of(TextColors.GREEN, " BetterBlacklisting Help")).padding(Text.of(TextColors.YELLOW, "=")).contents(helpText).sendTo(src);

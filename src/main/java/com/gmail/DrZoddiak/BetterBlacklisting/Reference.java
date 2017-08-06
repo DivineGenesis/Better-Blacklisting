@@ -48,6 +48,7 @@ public class Reference
     	if(banlist.contains(item))
     		return false;
     	banlist.add(item);
+    	BBConfig.savetoFile();
     	return true;
     }
     
@@ -56,6 +57,7 @@ public class Reference
     	if(!banlist.contains(item))
     		return false;
     	banlist.remove(item);
+    	BBConfig.savetoFile();
     	return true;
     }
 }
