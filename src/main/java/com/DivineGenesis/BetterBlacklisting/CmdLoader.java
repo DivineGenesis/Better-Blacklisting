@@ -1,4 +1,4 @@
-package com.gmail.DrZoddiak.BetterBlacklisting;
+package com.DivineGenesis.BetterBlacklisting;
 
 import java.util.List;
 

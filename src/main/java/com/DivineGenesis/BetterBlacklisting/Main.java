@@ -1,4 +1,4 @@
-package com.gmail.DrZoddiak.BetterBlacklisting;  
+package com.DivineGenesis.BetterBlacklisting;  
 
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -13,7 +13,7 @@ import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import com.google.inject.Inject;
-import static com.gmail.DrZoddiak.BetterBlacklisting.Reference.*;
+import static com.DivineGenesis.BetterBlacklisting.Reference.*;
 
 import java.io.File;
 

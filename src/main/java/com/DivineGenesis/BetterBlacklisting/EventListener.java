@@ -1,4 +1,4 @@
-package com.gmail.DrZoddiak.BetterBlacklisting;
+package com.DivineGenesis.BetterBlacklisting;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -15,7 +15,7 @@ public class EventListener
 	@Listener
 	public void pickup(ChangeInventoryEvent.Pickup event, @First Player player)
 	{
-		if(!player.hasPermission(Reference.BYPASS))
+		if(!player.hasPermission(Reference.BYPASS_BLACKLIST))
 		{
 			String itemID = Reference.getID(event.getTargetEntity().getItemType().getTemplate().createStack());
 			if(Reference.banlist.contains(itemID))
@@ -30,7 +30,7 @@ public class EventListener
 	@Listener
 	public void onUsePriMain(InteractItemEvent.Primary.MainHand event, @First Player player)
 	{
-		if(!player.hasPermission(Reference.BYPASS))
+		if(!player.hasPermission(Reference.BYPASS_BLACKLIST))
 			if(player.getItemInHand(HandTypes.MAIN_HAND).isPresent())
 			{
 				String itemID = Reference.getID(player.getItemInHand(HandTypes.MAIN_HAND).get());
@@ -45,7 +45,7 @@ public class EventListener
 	@Listener
 	public void onUseSecMain(InteractItemEvent.Secondary.MainHand event, @First Player player)
 	{
-		if(!player.hasPermission(Reference.BYPASS))
+		if(!player.hasPermission(Reference.BYPASS_BLACKLIST))
 			if(player.getItemInHand(HandTypes.MAIN_HAND).isPresent())
 			{
 				String itemID = Reference.getID(player.getItemInHand(HandTypes.MAIN_HAND).get());
@@ -60,7 +60,7 @@ public class EventListener
 	@Listener
 	public void onUseSecOff(InteractItemEvent.Primary.OffHand event, @First Player player)
 	{
-		if(!player.hasPermission(Reference.BYPASS))
+		if(!player.hasPermission(Reference.BYPASS_BLACKLIST))
 			if(player.getItemInHand(HandTypes.OFF_HAND).isPresent())
 			{
 				String itemID = Reference.getID(player.getItemInHand(HandTypes.OFF_HAND).get());
@@ -75,7 +75,7 @@ public class EventListener
 	@Listener
 	public void onUseSecOff(InteractItemEvent.Secondary.OffHand event, @First Player player)
 	{
-		if(!player.hasPermission(Reference.BYPASS))
+		if(!player.hasPermission(Reference.BYPASS_BLACKLIST))
 			if(player.getItemInHand(HandTypes.OFF_HAND).isPresent())
 			{
 				String itemID = Reference.getID(player.getItemInHand(HandTypes.OFF_HAND).get());

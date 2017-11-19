@@ -1,6 +1,6 @@
- package com.gmail.DrZoddiak.BetterBlacklisting;
+package com.DivineGenesis.BetterBlacklisting;
 
-import static com.gmail.DrZoddiak.BetterBlacklisting.Reference.*;
+import static com.DivineGenesis.BetterBlacklisting.Reference.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
